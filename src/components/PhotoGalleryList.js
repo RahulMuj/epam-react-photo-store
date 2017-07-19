@@ -19,14 +19,18 @@ export class Gallery extends Component {
       <div className="image-gallery">
         <div className="gallery-image">
           <div>
-            <img src={selectedImage} />
+            <img src={selectedImage.url} />
+            <span className="content-panel-desc">{selectedImage.description}</span>
+            <span className="content-panel"> Likes: {selectedImage.likes} </span>
           </div>
         </div>
         <div className="image-scroller">
           {images.map((image, index) => (
             <div key={index} onClick={() => selectImage(image)}>
-              <img src={image}/>
+              <img src={image.url}/>
+
             </div>
+
           ))}
         </div>
       </div>

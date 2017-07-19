@@ -80,3 +80,23 @@
 .label-holder{
   margin-top: 8%;
 }
+
+.content-panel{
+    display: inline-block;
+    border-radius: 3px;
+    padding: 5px 15px;
+    color: navy;
+    font-weight: bold;
+    text-decoration: none !important;
+    text-transform: uppercase;
+}
+
+.content-panel-desc{
+    display: inline-block;
+    border-radius: 3px;
+    padding-right: 40%;
+    color: navy;
+    font-weight: bold;
+    text-decoration: none !important;
+    text-transform: uppercase;
+}

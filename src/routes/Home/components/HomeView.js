@@ -23,9 +23,11 @@ export const HomeView = () => (
           <span>Add Photo</span>
           <input id="uploadBtn" type="file" className='upload' onClick='' />
         </div>
+        <div className="">
         <button className='btn btn-secondary' onClick=''>
           Delete Photo
         </button>
+        </div>
       </div>
 
       </div>
