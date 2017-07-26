@@ -1,54 +1,71 @@
+export const INCREMENT_LIKES = 'INCREMENT_LIKES';
+export const DELETE_PHOTOS = 'DELETE_PHOTOS';
 
 /*reducer to hold initial (default) state of our
 application and listens for actions.*/
-
 const defaultState = {
   images: [
     {
       key:1,
-      description: "Mountain View France" ,
-      url:  "https://farm2.staticflickr.com/1571/25911417225_a74c8041b0.jpg",
+      description: "Ant Man" ,
+      url:  "https://i.annihil.us/u/prod/marvel/i/mg/5/d0/54ad72b6084a0.jpg",
       likes:5
     },
     {
       key:2,
-      description: "Scenary View Paris" ,
-      url: "https://farm2.staticflickr.com/1581/25283151224_50f8da511e.jpg" ,
+      description: "Wolverine In Action" ,
+      url: "https://i.annihil.us/u/prod/marvel/i/mg/9/00/537bcb1133fd7.jpg" ,
       likes:0
     },
     {
       key:3,
-      description: "Forest View China" ,
-      url: "https://farm2.staticflickr.com/1653/25265109363_f204ea7b54.jpg" ,
-        likes:0
+      description: "Captain Marvel" ,
+      url: "https://i.annihil.us/u/prod/marvel/i/mg/6/30/537ba61b764b4.jpg",
+      likes:0
     },
     {
       key:4,
-      description: "River View HongKong" ,
-      url: "https://farm2.staticflickr.com/1571/25911417225_a74c8041b0.jpg" ,
-        likes:0
+      description: "Spider Man" ,
+      url: "https://i.annihil.us/u/prod/marvel/i/mg/6/60/538cd3628a05e.jpg",
+      likes:0
     },
     {
       key:5,
-      description: "Random View at Random" ,
-      url: "https://farm2.staticflickr.com/1450/25888412766_44745cbca3.jpg" ,
-        likes:0
+      description: "Doctor Strange" ,
+      url: "https://i.annihil.us/u/prod/marvel/i/mg/1/30/537ba85979532.jpg" ,
+      likes:0
     }
     ],
   selectedImage:{
     key:1,
-    description: "Mountain View France" ,
-    url: "https://farm2.staticflickr.com/1571/25911417225_a74c8041b0.jpg",
-      likes:5 
-   }
+    description: "Wolverine In Action" ,
+    url: "https://i.annihil.us/u/prod/marvel/i/mg/5/d0/54ad72b6084a0.jpg",
+    likes:5
+  }
+
+}
+
+const ACTION_HANDLERS = {
+  [INCREMENT_LIKES]    : (state, action) => state + action.payload
 }
 
 export default function images(state = defaultState, action) {
   switch(action.type) {
     case 'FIND_PHOTOS':
-      console.log(state, action)
+      console.log("Reducer",state, action)
       return {...state, selectedImage: action.image};
-         default:
-          return state;
+    case 'INCREMENT_LIKES':
+      console.log("Reducer",state, action)
+      state.selectedImage.likes= state.selectedImage.likes + action.payload;
+      return {
+        ...state ,selectedImage :state.selectedImage.likes
+      };
+    case 'DELETE_PHOTOS':
+      console.log("Reducer",state, action)
+      return {...state,image:action.image};
+
+
+    default:
+      return state;
   }
 }

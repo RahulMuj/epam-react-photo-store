@@ -5,7 +5,7 @@ import './PageLayout.scss'
 
 export const PageLayout = ({ children }) => (
   <div className='container text-center'>
-    <h1>React Photo Album</h1>
+    <h1>X-MEN React Photo Album</h1>
     {' · '}
     <IndexLink to='/' activeClassName='page-layout__nav-item--active'>Photo Album Store</IndexLink>
     {' · '}

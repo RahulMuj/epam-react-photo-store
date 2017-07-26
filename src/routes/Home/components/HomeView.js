@@ -1,38 +1,76 @@
 import React from 'react'
 import './HomeView.scss'
-import Gallery from '../../../components/PhotoGalleryList'
-import {Provider} from 'react-redux';
-import { createStore } from 'redux'
-import reducer from '../../../store/reducerDummy'
+import ManagePhotoGallery from '../../../components/ManagePhotoGallery'
+import PhotoStore from '../../../services/PhotoStore.js'
+import PhotoGalleryDetails from '../../../components/PhotoGalleryDetails'
 
-/*Store that consumes reducer and provides dispatcher that dispatches actions */
-const store = createStore(reducer);
+export default class  HomeView  extends React.Component{
 
-export const HomeView = () => (
-  <div className="imageHolder">
-    <h4> Your Photo Album </h4>
-    <Provider store={store}>
-      <Gallery />
-    </Provider>
-    <div style={{ margin: '0 auto' }} >
-      <h2 className="label-holder">Manage Your PhotoAlbum Store:</h2>
-      <div>
-      <div className="photo-selector">
-      <input id="uploadFile" placeholder="Click Add to add Photo" disabled="disabled" />
-        <div className="fileUpload btn btn-primary">
-          <span>Add Photo</span>
-          <input id="uploadBtn" type="file" className='upload' onClick='' />
-        </div>
-        <div className="">
-        <button className='btn btn-secondary' onClick=''>
-          Delete Photo
-        </button>
-        </div>
+  constructor(props){
+      super(props);
+      this.state = {
+        photoAlbumStore : [],
+        selectedphoto: []
+      };
+      this.store = new PhotoStore();
+      this.addLikes = this.addLikes.bind(this);
+      this.onDeletePhoto = this.onDeletePhoto.bind(this);
+      this.onSelectPhoto = this.onSelectPhoto.bind(this);
+    }
+
+
+  addLikes(photoId){
+    console.log("From First Level",photoId);
+    this.store.likePhoto(photoId);
+    this.setState({
+      photoAlbumStore : this.store.fetchPhotosFromStore(),
+      selectedphoto : this.store.fetchPhotoById(photoId),
+    })
+    }
+
+  onDeletePhoto(photoId){
+      this.store.deletePhotoFromStore(photoId);
+      let updatedPhotoAlbumStore = this.store.fetchPhotosFromStore();
+
+
+      this.setState({
+        photoAlbumStore : updatedPhotoAlbumStore ,
+        selectedphoto :updatedPhotoAlbumStore[0]
+      })
+  }
+
+  onSelectPhoto(photoId){
+      this.setState({
+        selectedphoto : this.store.fetchPhotoById(photoId),
+      })
+  }
+
+  componentWillMount(){
+    this.setState({
+      photoAlbumStore : this.store.fetchPhotosFromStore(),
+      selectedphoto : this.store.fetchSelectedPhotoFromStore(),
+    });
+  }
+
+  render() {
+    return (
+    <div className="imageHolder">
+      <div className="thumbnailHolder">
+        <h2 className="content-panel">PhotoAlbum Store</h2>
+          <PhotoGalleryDetails  store = {this.state.photoAlbumStore}
+                                selectedphoto = {this.state.selectedphoto}
+                                onAddLike = {this.addLikes}
+          />
       </div>
-
-      </div>
+      <div className="manageAlbumHolder">
+        <h2 className="label-holder content-panel">Manage Your PhotoAlbum Store</h2>
+            <ManagePhotoGallery store = {this.state.photoAlbumStore}
+                                selectedphoto = {this.state.selectedphoto}
+                                onAddLike = {this.addLikes}
+                                onDeletePhoto = {this.onDeletePhoto}
+                                onSelectPhoto  = {this.onSelectPhoto}
+            />
+        </div>
     </div>
-  </div>
-)
-
-export default HomeView
+ )}
+}
