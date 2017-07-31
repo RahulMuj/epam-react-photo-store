@@ -96,7 +96,6 @@ box-shadow: 10px 10px 5px #888888;
 .content-panel{
     display: inline-block;
     border-radius: 3px;
-    padding: 5px 15px;
     color: navy;
     font-weight: bold;
     text-decoration: none !important;
@@ -183,10 +182,10 @@ padding-top: 7px;
 
 
 .image-like-btn{
-  display:block;
-  margin-left: 45.1%;
+      display:block;
+      margin-left: 45.1%;
       margin-top: -40px;
-      img{
+    img{
         background-image: url('../assets/LikeIcon.png');
         background-repeat: no-repeat;
         width:34px;
@@ -299,13 +298,37 @@ padding-top: 7px;
 }
 
 .thumbnailHolder {
-height:60%;
+  height:700px;
 }
 
 .manageAlbumHolder{
 height:35%;
+display:block;
 }
 .emptyStore{
   color: red;
   height: 120px;
+}
+
+
+.likeNumber{
+    color: deepskyblue;
+    font-weight: bold;
+    padding: 6px;
+    font-size: x-large;
+}
+
+.image-like-btn-thumbnail {
+    display: block;
+    margin-top: 11px;
+        width: 340px;
+    img{
+      background-image: url('../assets/LikeIcon.png');
+      background-repeat: no-repeat;
+      width:34px;
+      height:32px;
+    }
+    .btn{
+      padding:.1rem .1rem;
+    }
 }

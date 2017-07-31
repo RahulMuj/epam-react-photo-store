@@ -15,10 +15,12 @@ export class  PhotoLikes extends Component {
     let photoLikeSection;
     if (this.props.store.length !== 0) {
       photoLikeSection = (
-        <div className= 'image-like-btn'>
+        <div className= {this.props.className }>
           <span>
             <button className='btn btn-secondary' title='Like Photo'
-              onClick= {this.onLikesClicked}><img /></button>{this.props.selectedphoto.likes} people like this
+              onClick= {this.onLikesClicked}><img /></button>
+          </span>
+          <span className="likeNumber">{this.props.selectedphoto.likes}
           </span>
         </div>
       )

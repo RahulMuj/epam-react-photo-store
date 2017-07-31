@@ -52,8 +52,15 @@ ImageGetException(message) {
            this.name = 'ImageNotFoundException';
 }
 
+
+
 fetchPhotosFromStore(){
-  return this._photoAlbumImages;
+  return new Promise((resolve,reject) => {
+    const data = this._photoAlbumImages ;
+      setTimeout(() => {
+        resolve(data)},
+        1000) ;
+  });
 }
 
 fetchSelectedPhotoFromStore(){
@@ -64,14 +71,11 @@ fetchPhotoById(id){
   return this._photoAlbumImages.find((element) => element.id === id );
 }
 
-addPhotoToStore(image){
-        if (image === null ) {
-    			throw new ImageException('Cannot add,Image provided is null')
-    		}
-        if (!image.id){
-           image.id = Math.random().toString(36).substr(2, 5) + ".jpg";
-        }
-        this._photoAlbumImages.push(image);
+addPhotoToStore(photo){
+    if(!photo) {
+    	throw new ImageException('Cannot add,Image provided is null')
+    }
+    this._photoAlbumImages.push(photo);
 }
 
 deletePhotoFromStore(id){

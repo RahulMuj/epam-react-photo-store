@@ -10,8 +10,9 @@ export default class PhotoGalleryThumbnail extends Component {
        selectedImage
      })
    }
-    render() {
 
+    render() {
+      const {store,selectedphoto,onSelectPhoto , onDeletePhoto , onAddLike} = this.props;
       let photoThumbnail;
       if (this.props.store.length !== 0) {
         photoThumbnail = (

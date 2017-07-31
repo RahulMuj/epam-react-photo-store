@@ -12,24 +12,18 @@ export class ManagePhotoGallery extends Component {
         super(props);
   }
 
-  onAddLike(photoId){
-    this.props.onAddLike(photoId);
+  static defaultProps = {
+    className: 'image-like-btn'
   }
-
-  onDeletePhoto(photoId){
-    this.props.onDeletePhoto(photoId);
-  }
-
-  onSelectPhoto(photoId){
-    this.props.onSelectPhoto(photoId);
-  }
-
 
   render() {
-    const {store,selectedphoto,onSelectPhoto , onDeletePhoto , onAddLike} = this.props;
+    const {store,selectedphoto,onSelectPhoto , onDeletePhoto , onAddLike , onAddPhoto} = this.props;
     return (
       <div>
-          <PhotoUploader />
+          <PhotoUploader store= {store}
+                        onAddPhoto ={onAddPhoto}
+
+           />
           <PhotoSingleThumbnail store= {store}
                                 selectedphoto = {selectedphoto}
           />
@@ -44,6 +38,7 @@ export class ManagePhotoGallery extends Component {
           <PhotoGalleryLikes store= {store}
                              selectedphoto = {selectedphoto}
                              onAddLike = {onAddLike}
+                             className = {this.props.className }
           />
           <PhotoComment store= {store}
                         selectedphoto = {selectedphoto}
