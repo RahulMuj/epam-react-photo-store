@@ -3,6 +3,7 @@ Photo Album Store with React
 PhotoStore.js acts as central Photo Store.
 PageLayout.js acts as React Header Component carrying any links if required.
 HomeView.js acts as Central React Component that wraps various child components.
+
 	 a) PhotoGalleryDetails.js component shows list of Thumbnail images from the store.
 
 	 b) ManagePhotoGallery.js renders image from Album store with detailed description of images and options to add , delete or edit 	     images.It contains below child components:
